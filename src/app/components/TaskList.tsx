@@ -6,7 +6,6 @@ import { useListHandler } from "../hooks/uselisthandler";
 import useTaskStore from "../zustand/taskstore";
 import { FiEdit, FiTrash } from "react-icons/fi";
 import DialogBox from "../dialogBox/dialog";
-
 import { useThemeContext } from "../context/usethemeContext";
 
 export default function TaskList() {
@@ -16,9 +15,7 @@ export default function TaskList() {
 
   const {
     onMarkComplete,
-
     editTaskId,
-
     handleCancel,
     handleEdit,
     handleSave,
@@ -130,13 +127,13 @@ export default function TaskList() {
                   placeholder="Task Description"
                 />
                 <input
-                  type="date"
+                  type="datetime-local"
                   className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 ${
                     theme === "light"
                       ? "bg-white text-black border-black"
                       : "bg-black text-white border-white"
                   }`}
-                  value={editedTask.dueDate.split("T")[0]}
+                  value={editedTask.dueDate}
                   onChange={(e) =>
                     setEditedTask({ ...editedTask, dueDate: e.target.value })
                   }
@@ -188,7 +185,15 @@ export default function TaskList() {
                       : "text-gray-500"
                   }`}
                 >
-                  <strong>Due:</strong> {new Date(task.dueDate).toLocaleDateString()}
+                  <strong>Due:</strong>{" "}
+                  {new Date(task.dueDate).toLocaleString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                  })}
                 </p>
               </div>
             )}
