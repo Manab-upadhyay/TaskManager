@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
   
       // Update the task in the database
       const result = await db.collection<Task>("tasks").updateOne(
-        { _id: id }, // Use the converted ObjectId
+        { _id: new ObjectId(id as string) }, // Use the converted ObjectId
         { $set: updateFields }
       );
   
@@ -99,7 +99,7 @@ export async function POST(req: NextRequest) {
         console.log(body)
         const {id}= body
         const {db}= await connectToDatabase()
-        const result= await db.collection<Task>('tasks').deleteOne({_id:id})
+        const result= await db.collection<Task>('tasks').deleteOne({_id:new ObjectId(id as string)})
         if(result.deletedCount===0){
             return new NextResponse("Task not found",{status:400})
         }

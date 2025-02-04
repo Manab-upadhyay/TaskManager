@@ -1,4 +1,5 @@
 
+import { ObjectId } from "mongodb";
 import { Task } from "../model/task";
 import useTaskStore from "../zustand/taskstore";
 
@@ -13,11 +14,11 @@ const [editTaskId, setEditTaskId] = useState<string | null>(null);
     description: "",
     dueDate: "",
   });
-  const [deleteTaskId, setDeleteTaskId] = useState<string | null>(null);
-  async function onMarkComplete(id: string) {
+  const [deleteTaskId, setDeleteTaskId] = useState<ObjectId | null>(null);
+  async function onMarkComplete(id: ObjectId) {
     try {
       console.log("calling API to mark task as complete");
-      const res = await fetch('http://localhost:3000/api', {
+      const res = await fetch('/api', {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json"
@@ -41,9 +42,9 @@ const [editTaskId, setEditTaskId] = useState<string | null>(null);
       console.log("Error marking task as complete:", error);
     }
   }
-  async function deleteTask(id:string){
+  async function deleteTask(id:ObjectId){
     try{
-        const res= await fetch('http://localhost:3000/api',{
+        const res= await fetch('/api',{
             method:"DELETE",
             headers:{
                 "content-Type":"application/json"

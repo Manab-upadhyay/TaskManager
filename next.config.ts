@@ -7,10 +7,14 @@ const nextConfig: NextConfig = {
   },
 
   async rewrites() {
+    const isProduction = process.env.NODE_ENV === 'production';
+
     return [
       {
-        source: '/api/:path*', // Match any path starting with /api
-        destination: 'https://task-manager-kurq.vercel.app/api/:path*', // Proxy it to your external API
+        source: '/api/:path*', 
+        destination: isProduction
+          ? 'https://task-manager-kurq.vercel.app/api/:path*'  // Production API URL
+          : 'http://localhost:3000/api/:path*',  // Development API URL
       },
     ];
   },

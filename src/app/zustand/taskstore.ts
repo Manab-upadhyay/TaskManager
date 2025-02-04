@@ -1,7 +1,8 @@
+import { ObjectId } from 'mongodb';
 import { create } from 'zustand';
 
 interface Task {
-  _id: string // Corrected type
+  _id: ObjectId // Corrected type
   title: string;
   description: string;
   dueDate: string; // Use string for input, convert to Date for MongoDB
