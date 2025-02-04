@@ -54,7 +54,7 @@ const {setTaskdata,Taskdata}= useTaskStore()
     //   const result = await db.collection<Task>('tasks').insertOne(task);
   
    
-    const response = await fetch("/", {
+    const response = await fetch("/api", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const {setTaskdata,Taskdata}= useTaskStore()
         throw new Error("Failed to add task");
       }
 
-      const res1 = await fetch('/');
+      const res1 = await fetch('/api');
       if (!res1.ok) {
         throw new Error("Failed to fetch updated tasks");
       }
