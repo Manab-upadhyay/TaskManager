@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
         const body = await req.json();
        
       const { id, completed, title, description, dueDate } = body;
-      console.log(body);
+    
 
       // Validate ID
       if (!id || !ObjectId.isValid(id)) {
@@ -89,14 +89,14 @@ export async function POST(req: NextRequest) {
         { status: 200 }
       );
     } catch (error) {
-      console.error("Error updating task:", error);
+     
       return new NextResponse("Internal server error", { status: 500 });
     }
   }
   export async function DELETE(req:NextRequest){
     try {
         const body= await req.json()
-        console.log(body)
+       
         const {id}= body
         const {db}= await connectToDatabase()
         const result= await db.collection<Task>('tasks').deleteOne({_id:new ObjectId(id as string)})

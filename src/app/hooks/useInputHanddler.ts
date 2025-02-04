@@ -49,9 +49,7 @@ const {setTaskdata,Taskdata}= useTaskStore()
       };
 
   
-      // Insert the task into MongoDB
-    //   const { db } = await connectToDatabase();
-    //   const result = await db.collection<Task>('tasks').insertOne(task);
+ 
   
    
     const response = await fetch("/api", {
@@ -73,7 +71,7 @@ const {setTaskdata,Taskdata}= useTaskStore()
 
    
       const updatedTasks: Task[] = await res1.json();
-      console.log("Updated tasks:", updatedTasks);
+     
 
       
       setTaskdata(updatedTasks);
