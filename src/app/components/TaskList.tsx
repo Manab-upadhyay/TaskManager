@@ -10,7 +10,7 @@ import DialogBox from "../dialogBox/dialog";
 import { useThemeContext } from "../context/usethemeContext";
 
 export default function TaskList() {
-  const { data, loading } = useFetch<Task[]>("http://localhost:3000/api");
+  const { data, loading } = useFetch<Task[]>("/api");
   const { Taskdata, setTaskdata } = useTaskStore();
   const { theme } = useThemeContext();
 

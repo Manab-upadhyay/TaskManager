@@ -73,7 +73,7 @@ catch(error){
 
    const handleSave = async(taskId: string) => {
     try {
-        await fetch('http://localhost:3000/api',{
+        await fetch('/api',{
             method:"PATCH",
             headers:{
                 "content-Type":"application/json"
